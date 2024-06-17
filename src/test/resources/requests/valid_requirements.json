@@ -1,0 +1,61 @@
+{
+  "functionalRequirements": [
+    {
+      "requirementId": "FR-0001",
+      "requirementDescription": "This is a functional requirement",
+      "requirementPriority": "HIGH",
+      "requirementStatus": "Proposed",
+      "requirementCategory": "User Interface",
+      "requirementOwner": "John Doe",
+      "requirementCreatedDate": "2021-07-01T00:00:00.000Z",
+      "requirementDueDate": "2021-07-01T00:00:00.000Z",
+      "requirementVersion": "1"
+    },
+    {
+      "requirementId": "FR-0002",
+      "requirementDescription": "This is a functional requirement",
+      "requirementPriority": "MEDIUM",
+      "requirementStatus": "Proposed",
+      "requirementCategory": "User Interface",
+      "requirementOwner": "John Doe",
+      "requirementCreatedDate": "2021-07-01T00:00:00.000Z",
+      "requirementDueDate": "2021-07-01T00:00:00.000Z",
+      "requirementVersion": "1"
+    },
+    {
+      "requirementId": "FR-0003",
+      "requirementDescription": "This is a functional requirement",
+      "requirementPriority": "LOW",
+      "requirementStatus": "Proposed",
+      "requirementCategory": "User Interface",
+      "requirementOwner": "John Doe",
+      "requirementCreatedDate": "2021-07-01T00:00:00.000Z",
+      "requirementDueDate": "2021-07-01T00:00:00.000Z",
+      "requirementVersion": "1"
+    }
+  ],
+  "nonFunctionalRequirements": [
+    {
+      "requirementId": "NFR-0001",
+      "requirementDescription": "The system should be able to handle 1000 concurrent users",
+      "requirementCategory": "Performance",
+      "requirementPriority": "High",
+      "requirementStatus": "Proposed",
+      "requirementOwner": "John Doe",
+      "requirementCreatedDate": "2021-07-01T00:00:00.000Z",
+      "requirementDueDate": "2021-07-01T00:00:00.000Z",
+      "requirementVersion": "1"
+    },
+    {
+      "requirementId": "NFR-0002",
+      "requirementDescription": "The system should be able to handle 1000 concurrent users",
+      "requirementCategory": "Security",
+      "requirementPriority": "High",
+      "requirementStatus": "Proposed",
+      "requirementOwner": "John Doe",
+      "requirementCreatedDate": "2021-07-01T00:00:00.000Z",
+      "requirementDueDate": "2021-07-01T00:00:00.000Z",
+      "requirementVersion": "1"
+    }
+  ]
+}

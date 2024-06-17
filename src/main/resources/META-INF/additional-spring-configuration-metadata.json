@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "gpt.api.url",
+  "type": "java.lang.String",
+  "description": "The URL to use to prompt the GPT API"
+}]}

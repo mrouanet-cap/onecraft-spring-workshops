@@ -1,0 +1,492 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "OneCraft Project Design API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/engines/davinci-codex/completions": {
+      "post": {
+        "summary": "Create a new OneCraft project design",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OneCraftProjectTechnicalDesignRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OneCraftProjectTechnicalDesign"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "OneCraftProjectTechnicalDesignRequest": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "The prompt for the project design"
+          }
+        },
+        "required": [
+          "prompt"
+        ]
+      },
+      "OneCraftProjectTechnicalDesign": {
+        "type": "object",
+        "properties": {
+          "components": {
+            "description": "The software components used in the project",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SoftwareComponent"
+            }
+          },
+          "dataModels": {
+            "description": "The data models used in the project",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataModel"
+            }
+          },
+          "architectureDiagrams": {
+            "description": "The architecture diagrams used in the project",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArchitectureDiagram"
+            }
+          },
+          "deploymentDiagrams": {
+            "description": "The deployment diagrams used in the project",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentDiagram"
+            }
+          }
+        }
+      },
+      "SoftwareComponent": {
+        "description": "A software component",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the component",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the component",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of the component",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "description"
+        ]
+      },
+      "DataModel": {
+        "description": "A data model",
+        "type": "object",
+        "properties": {
+          "entities": {
+            "description": "The entities in the data model",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataModelEntity"
+            }
+          },
+          "relationships": {
+            "description": "The relationships between the entities in the data model",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataModelRelationship"
+            }
+          },
+          "constraints": {
+            "description": "The constraints on the entities in the data model",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataModelConstraint"
+            }
+          }
+        },
+        "required": [
+          "entities",
+          "relationships",
+          "constraints"
+        ]
+      },
+      "ArchitectureDiagram": {
+        "description": "An architecture diagram",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the diagram",
+            "type": "string"
+          },
+          "description": {
+            "description": "The description of the diagram",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the diagram",
+            "type": "string"
+          },
+          "format": {
+            "description": "The format of the diagram",
+            "type": "string"
+          },
+          "interfaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SoftwareComponentInterface"
+            }
+          },
+          "dataFlows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataFlow"
+            }
+          },
+          "constraints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ArchitecturalConstraint"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "type",
+          "format",
+          "interfaces",
+          "dataFlows",
+          "constraints"
+        ]
+      },
+      "ArchitecturalConstraint": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "type",
+          "rationale"
+        ]
+      },
+      "SoftwareComponentInterface": {
+        "type": "object",
+        "properties": {
+          "componentName": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "componentName",
+          "name",
+          "type",
+          "description"
+        ]
+      },
+      "DataFlow": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "sourceComponent": {
+            "type": "string"
+          },
+          "destinationComponent": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object",
+            "$ref": "#/components/schemas/DataFlowContent"
+          }
+        },
+        "required": [
+          "type",
+          "sourceComponent",
+          "destinationComponent",
+          "content"
+        ]
+      },
+      "DataFlowContent": {
+        "type": "object",
+        "properties": {
+          "dataType": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataType",
+          "description"
+        ]
+      },
+      "DeploymentDiagram": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string"
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentConnection"
+            }
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentNode"
+            }
+          }
+        }
+      },
+      "ComponentConnection": {
+        "type": "object",
+        "properties": {
+          "protocol": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "destination": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "protocol",
+          "description",
+          "source",
+          "destination"
+        ]
+      },
+      "DeploymentNode": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NodeResource"
+            }
+          },
+          "deployedComponents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeployedSoftwareComponent"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "location",
+          "resources",
+          "deployedComponents"
+        ]
+      },
+      "NodeResource": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "capacity": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "capacity",
+          "type"
+        ]
+      },
+      "DeployedSoftwareComponent": {
+        "type": "object",
+        "properties": {
+          "componentName": {
+            "type": "string"
+          },
+          "configurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ComponentConfiguration"
+            }
+          }
+        },
+        "required": [
+          "componentName",
+          "configurations"
+        ]
+      },
+      "ComponentConfiguration": {
+        "type": "object",
+        "properties": {
+          "setting": {
+            "type": "string",
+            "description": "The name of the setting"
+          },
+          "type": {
+            "type": "string",
+            "description": "The type of the setting"
+          },
+          "value": {
+            "type": "string",
+            "description": "The value of the setting"
+          }
+        },
+        "required": [
+          "setting",
+          "type",
+          "value"
+        ]
+      },
+      "DataModelEntity": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DataModelAttribute"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "attributes"
+        ]
+      },
+      "DataModelAttribute": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "description"
+        ]
+      },
+      "DataModelRelationship": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "sourceName": {
+            "type": "string"
+          },
+          "targetName": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "description"
+        ]
+      },
+      "DataModelConstraint": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "rationale": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "description",
+          "type",
+          "rationale"
+        ]
+      }
+    }
+  }
+}

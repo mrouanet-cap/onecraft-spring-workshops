@@ -1,0 +1,325 @@
+{
+  "id": 1,
+  "projectId": 1,
+  "status": "DRAFT",
+  "dataModels": [
+    {
+      "id": 1,
+      "entities": [
+        {
+          "id": 1,
+          "name": "Product",
+          "description": "Represents a product in the system",
+          "attributes": [
+            {
+              "id": 1,
+              "name": "Price",
+              "type": "Decimal",
+              "description": "The price of the product"
+            },
+            {
+              "id": 2,
+              "name": "ProductID",
+              "type": "Integer",
+              "description": "Unique identifier for the product"
+            },
+            {
+              "id": 3,
+              "name": "ProductName",
+              "type": "String",
+              "description": "The name of the product"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "User",
+          "description": "Represents a user in the system",
+          "attributes": [
+            {
+              "id": 5,
+              "name": "Password",
+              "type": "String",
+              "description": "Encrypted password for user authentication"
+            },
+            {
+              "id": 4,
+              "name": "UserID",
+              "type": "Integer",
+              "description": "Unique identifier for the user"
+            },
+            {
+              "id": 6,
+              "name": "Username",
+              "type": "String",
+              "description": "The username chosen by the user for authentication"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "id": 1,
+          "name": "User-Product",
+          "type": "Many-to-Many",
+          "description": "Users can purchase multiple products, and a product can be purchased by multiple users",
+          "sourceEntity": {
+            "id": 2,
+            "name": "User",
+            "description": "Represents a user in the system",
+            "attributes": [
+              {
+                "id": 5,
+                "name": "Password",
+                "type": "String",
+                "description": "Encrypted password for user authentication"
+              },
+              {
+                "id": 4,
+                "name": "UserID",
+                "type": "Integer",
+                "description": "Unique identifier for the user"
+              },
+              {
+                "id": 6,
+                "name": "Username",
+                "type": "String",
+                "description": "The username chosen by the user for authentication"
+              }
+            ]
+          },
+          "targetEntity": {
+            "id": 1,
+            "name": "Product",
+            "description": "Represents a product in the system",
+            "attributes": [
+              {
+                "id": 1,
+                "name": "Price",
+                "type": "Decimal",
+                "description": "The price of the product"
+              },
+              {
+                "id": 2,
+                "name": "ProductID",
+                "type": "Integer",
+                "description": "Unique identifier for the product"
+              },
+              {
+                "id": 3,
+                "name": "ProductName",
+                "type": "String",
+                "description": "The name of the product"
+              }
+            ]
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "id": 1,
+          "description": "Each user must have a unique username",
+          "type": "Unique Constraint",
+          "rationale": "To ensure that each user in the system has a distinct identity and to avoid potential conflicts or confusion"
+        }
+      ]
+    }
+  ],
+  "architectureDiagrams": [
+    {
+      "id": 1,
+      "name": "System Architecture Diagram",
+      "description": "Example system architecture diagram",
+      "type": "High-Level Overview",
+      "format": "PNG",
+      "version": 1,
+      "author": "GPT",
+      "createdDate": null,
+      "comments": null,
+      "tags": null,
+      "status": "DRAFT",
+      "updatedDate": null,
+      "interfaces": [
+        {
+          "id": 2,
+          "component": {
+            "id": 2,
+            "name": "Backend Services",
+            "type": "Software",
+            "description": "Handles business logic and interacts with the database"
+          },
+          "name": "Database Connection",
+          "type": "JDBC",
+          "description": "Specifies how the backend services interact with the database"
+        },
+        {
+          "id": 1,
+          "component": {
+            "id": 2,
+            "name": "Backend Services",
+            "type": "Software",
+            "description": "Handles business logic and interacts with the database"
+          },
+          "name": "REST API",
+          "type": "HTTP",
+          "description": "Defines the communication protocol between the user interface and backend services"
+        }
+      ],
+      "dataFlows": [
+        {
+          "id": 1,
+          "sourceComponent": {
+            "id": 2,
+            "name": "Backend Services",
+            "type": "Software",
+            "description": "Handles business logic and interacts with the database"
+          },
+          "destinationComponent": {
+            "id": 1,
+            "name": "User Interface",
+            "type": "Software",
+            "description": "Responsible for presenting information to and accepting information from the user"
+          },
+          "type": "Request-Response",
+          "content": {
+            "id": 1,
+            "dataType": "JSON",
+            "description": "Data to be displayed to the user"
+          }
+        }
+      ],
+      "constraints": [
+        {
+          "id": 1,
+          "description": "Must use microservices architecture",
+          "type": "Architecture Constraint",
+          "rationale": "To enable scalability, flexibility, and maintainability of the system"
+        }
+      ]
+    }
+  ],
+  "deploymentDiagrams": [
+    {
+      "id": 1,
+      "name": "Deployment Diagram 1",
+      "description": "Example deployment diagram",
+      "format": "PNG",
+      "version": 1,
+      "author": "GPT",
+      "createdDate": null,
+      "comments": null,
+      "tags": null,
+      "status": "DRAFT",
+      "updatedDate": null,
+      "connections": [
+        {
+          "id": 1,
+          "source": {
+            "id": 1,
+            "name": "User Interface",
+            "type": "Software",
+            "description": "Responsible for presenting information to and accepting information from the user"
+          },
+          "target": {
+            "id": 2,
+            "name": "Backend Services",
+            "type": "Software",
+            "description": "Handles business logic and interacts with the database"
+          },
+          "description": "User interface communicates with backend services using HTTP",
+          "protocol": "HTTP"
+        }
+      ],
+      "nodes": [
+        {
+          "id": 2,
+          "name": "Database Server",
+          "type": "Virtual",
+          "location": "Cloud Provider B",
+          "resources": [
+            {
+              "id": 3,
+              "type": "CPU",
+              "capacity": "Dual-core CPU"
+            },
+            {
+              "id": 4,
+              "type": "RAM",
+              "capacity": "32 GB RAM"
+            }
+          ],
+          "deployedComponents": [
+            {
+              "id": 2,
+              "component": {
+                "id": 1,
+                "name": "User Interface",
+                "type": "Software",
+                "description": "Responsible for presenting information to and accepting information from the user"
+              },
+              "configurations": [
+                {
+                  "id": 2,
+                  "setting": "Number of Instances",
+                  "type": "Integer",
+                  "value": "2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 1,
+          "name": "Web Server",
+          "type": "Physical",
+          "location": "Data Center A",
+          "resources": [
+            {
+              "id": 1,
+              "type": "CPU",
+              "capacity": "Quad-core CPU"
+            },
+            {
+              "id": 2,
+              "type": "RAM",
+              "capacity": "16 GB RAM"
+            }
+          ],
+          "deployedComponents": [
+            {
+              "id": 1,
+              "component": {
+                "id": 2,
+                "name": "Backend Services",
+                "type": "Software",
+                "description": "Handles business logic and interacts with the database"
+              },
+              "configurations": [
+                {
+                  "id": 1,
+                  "setting": "Number of Worker Processes",
+                  "type": "Integer",
+                  "value": "4"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": 1,
+      "name": "User Interface",
+      "type": "Software",
+      "description": "Responsible for presenting information to and accepting information from the user"
+    },
+    {
+      "id": 2,
+      "name": "Backend Services",
+      "type": "Software",
+      "description": "Handles business logic and interacts with the database"
+    }
+  ]
+}

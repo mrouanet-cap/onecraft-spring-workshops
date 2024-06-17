@@ -1,0 +1,210 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/v1/engines/davinci-codex/completions"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody": {
+      "deploymentDiagrams": [
+        {
+          "name": "Deployment Diagram 1",
+          "description": "Example deployment diagram",
+          "format": "PNG",
+          "connections": [
+            {
+              "protocol": "HTTP",
+              "source": "User Interface",
+              "destination": "Backend Services",
+              "description": "User interface communicates with backend services using HTTP"
+            }
+          ],
+          "nodes": [
+            {
+              "name": "Web Server",
+              "type": "Physical",
+              "location": "Data Center A",
+              "resources": [
+                {
+                  "type": "CPU",
+                  "capacity": "Quad-core CPU"
+                },
+                {
+                  "type": "RAM",
+                  "capacity": "16 GB RAM"
+                }
+              ],
+              "deployedComponents": [
+                {
+                  "componentName": "Backend Services",
+                  "configurations": [
+                    {
+                      "setting": "Number of Worker Processes",
+                      "type": "Integer",
+                      "value": "4"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Database Server",
+              "type": "Virtual",
+              "location": "Cloud Provider B",
+              "resources": [
+                {
+                  "type": "CPU",
+                  "capacity": "Dual-core CPU"
+                },
+                {
+                  "type": "RAM",
+                  "capacity": "32 GB RAM"
+                }
+              ],
+              "deployedComponents": [
+                {
+                  "componentName": "User Interface",
+                  "configurations": [
+                    {
+                      "setting": "Number of Instances",
+                      "type": "Integer",
+                      "value": "2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "dataModels": [
+        {
+          "entities": [
+            {
+              "name": "User",
+              "description": "Represents a user in the system",
+              "attributes": [
+                {
+                  "name": "UserID",
+                  "type": "Integer",
+                  "description": "Unique identifier for the user"
+                },
+                {
+                  "name": "Username",
+                  "type": "String",
+                  "description": "The username chosen by the user for authentication"
+                },
+                {
+                  "name": "Password",
+                  "type": "String",
+                  "description": "Encrypted password for user authentication"
+                }
+              ]
+            },
+            {
+              "name": "Product",
+              "description": "Represents a product in the system",
+              "attributes": [
+                {
+                  "name": "ProductID",
+                  "type": "Integer",
+                  "description": "Unique identifier for the product"
+                },
+                {
+                  "name": "ProductName",
+                  "type": "String",
+                  "description": "The name of the product"
+                },
+                {
+                  "name": "Price",
+                  "type": "Decimal",
+                  "description": "The price of the product"
+                }
+              ]
+            }
+          ],
+          "relationships": [
+            {
+              "name": "User-Product",
+              "type": "Many-to-Many",
+              "sourceName": "User",
+              "targetName": "Product",
+              "description": "Users can purchase multiple products, and a product can be purchased by multiple users"
+            }
+          ],
+          "constraints": [
+            {
+              "description": "Each user must have a unique username",
+              "type": "Unique Constraint",
+              "rationale": "To ensure that each user in the system has a distinct identity and to avoid potential conflicts or confusion"
+            }
+          ]
+        }
+      ],
+      "architectureDiagrams": [
+        {
+          "name": "System Architecture Diagram",
+          "description": "Example system architecture diagram",
+          "type": "High-Level Overview",
+          "format": "PNG",
+          "interfaces": [
+            {
+              "componentName": "Backend Services",
+              "name": "REST API",
+              "type": "HTTP",
+              "description": "Defines the communication protocol between the user interface and backend services"
+            },
+            {
+              "componentName": "Backend Services",
+              "name": "Database Connection",
+              "type": "JDBC",
+              "description": "Specifies how the backend services interact with the database"
+            }
+          ],
+          "dataFlows": [
+            {
+              "type": "Request-Response",
+              "sourceComponent": "User Interface",
+              "destinationComponent": "Backend Services",
+              "content": {
+                "description": "User requests for data or performs an action",
+                "dataType": "JSON"
+              }
+            },
+            {
+              "type": "Request-Response",
+              "sourceComponent": "Backend Services",
+              "destinationComponent": "User Interface",
+              "content": {
+                "dataType": "JSON",
+                "description": "Data to be displayed to the user"
+              }
+            }
+          ],
+          "constraints": [
+            {
+              "description": "Must use microservices architecture",
+              "type": "Architecture Constraint",
+              "rationale": "To enable scalability, flexibility, and maintainability of the system"
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "name": "User Interface",
+          "type": "Software",
+          "description": "Responsible for presenting information to and accepting information from the user"
+        },
+        {
+          "name": "Backend Services",
+          "type": "Software",
+          "description": "Handles business logic and interacts with the database"
+        }
+      ]
+    },
+    "headers": {
+      "content-type": "application/json"
+    }
+  }
+}
